@@ -1,0 +1,21 @@
+<%- include('partials/header') -%>
+    <div>
+        <h1>All Articles</h1>
+        <% if(articles.length) { %>
+
+            <% articles.forEach(a => { %> 
+               <section>
+                   <div>
+                       <a href="/articles/<%= a.id %>">
+                          <h2><%= a.title %></h2>
+                       </a>
+                    </div>
+               </section>
+            <% }) %>
+
+        <% } else { %>
+        <h2>No Articles Present</h2>
+        <% } %>
+    </div>
+
+<%- include('partials/footer') -%>
