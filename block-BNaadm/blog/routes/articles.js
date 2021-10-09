@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Article = require('../models/Article');
+var Comment = require('../models/Comment');
+
 
 // listing all articles
 router.get('/', (req, res, next) => {
@@ -19,10 +21,21 @@ router.get('/new', (req, res) => {
 // Fetch Single article
 router.get('/:id', (req, res, next) => {
       var id = req.params.id;
-      Article.findById(id, (err, article) => {
-        if(err) return next(err);
-        res.render('articleDetails', { article })
-    })
+//     Article.findById(id, (err, article) => {
+//     if(err) return next(err);
+//     res.render('articleDetails', { article })
+//    })
+// This entire things is query building
+Article
+.findById(id)
+// populated the comment so that we are able to display the comment now
+.populate('comments')
+// MUltiple operation simaltaneously we use exce()
+.exec((err, article) => {
+    if(err) return next(err);
+    console.log(article);
+    res.render('articleDetails', { article })
+  })
 });
 
 // Edit the form and rendering the form
@@ -48,12 +61,16 @@ router.post('/:id', (req, res, next) => {
 // Delete operation
 router.get('/:id/delete', (req, res, next) => {
     var id = req.params.id;
-    Article.findByIdAndDelete(id, (err, deletearticle) => {
+    Article.findByIdAndDelete(id, (err, article) => {
         if(err) return next(err);
-        res.redirect('/articles')
+        Comment.remove({ articleId: article.id} , (err) => {
+            if(err) return next(err);
+            res.redirect('/articles')
+        })
     })
 });
 
+// increment likes
 router.get('/:id/likes', (req, res, next) => {
     var id = req.params.id;
   
@@ -62,15 +79,34 @@ router.get('/:id/likes', (req, res, next) => {
       res.redirect('/articles/' + id);
     });
   });
-  
+
+//  increment dilikes
 router.get('/:id/dislikes', (req, res, next) => {
     var id = req.params.id;
   
     Article.findByIdAndUpdate(id, { $inc: { likes: -1 } }, (err, article) => {
-      if (err) return next(err);
-      res.redirect('/articles/' + id);
+        if (err) return next(err);
+        res.redirect('/articles/' + id);
     });  
 });
+
+// Comment
+// This is a articleId because comment hasn't been created
+router.post('/:articleId/comments', (req, res, next) => {
+    var articleId = req.params.articleId;
+    console.log(req.body);
+    req.body.articleId = articleId;
+    Comment.create(req.body, (err, comment) => {
+        if (err) return next(err);
+        Article.findByIdAndUpdate(articleId, { $push: { comments: comment.id}}, (err, article) => {
+            if (err) return next(err);
+            res.redirect('/articles/' + articleId); // redirect back to the articledetails.ejs
+              
+        })
+      
+    });  
+});
+
 
 
 

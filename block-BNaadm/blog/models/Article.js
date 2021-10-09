@@ -7,7 +7,14 @@ var articleSchema = new Schema({
     description :{ type: String, required: true },
     tags : [String],
     author: String,
-    likes: { type: Number, default: 0 }
+    likes: { type: Number, default: 0 },
+    // keep track of all comments id made on this specific article
+    // Any time we store ObjectId of any other document, which belongs to some other models, we are going to use Schema.Types.ObjectId
+ 
+    comments : [{
+        // whatever objectId is store here belongs to which model
+        type: Schema.Types.ObjectId, ref: 'Comment'
+    }]
 
 }, {timestamps: true });
 
