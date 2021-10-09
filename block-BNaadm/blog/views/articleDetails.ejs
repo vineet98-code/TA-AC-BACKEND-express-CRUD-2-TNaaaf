@@ -1,0 +1,25 @@
+<%- include('partials/header') -%>
+
+
+   <h1><%= article.title %></h1>
+   <h3><%= article.author.name %></h3>
+
+   <% article.tags.forEach(t => { %>
+       <span><%= t %></span>
+   <% }) %>
+
+   <p><%= article.description %></p>
+
+   <h3><%= article.likes ? article.likes : 0 %></h3>
+   <!-- <h3><%= article.dislikes ? article.dislikes : 0 %></h3> -->
+
+   <a href="/articles/<%= article.id %>/likes"><button class="btn">Like</button></a>
+   <a href="/articles/<%= article.id %>/dislikes"><button class="btn">disLike</button></a>
+
+
+    <div class="flex justify-between">
+        <a href="/articles/<%= article.id %>/edit"><button class="btn">Edit</button> </a>
+        <a href="/articles/<%= article.id %>/delete"><button class="btn">delete</button> </a>
+    </div>
+
+<%- include('partials/footer') -%>
