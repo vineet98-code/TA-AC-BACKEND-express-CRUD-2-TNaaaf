@@ -1,0 +1,85 @@
+body {
+   text-align: center;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+  text-align: center;
+}
+header, footer {
+  background-color: black;
+  padding: 0.8rem;
+}
+footer{
+  margin-top: 20px;
+}
+/* FLEX-BOX */
+.flex {
+  display: flex;
+}
+
+.item-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+.container {
+  max-width: 1380px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btn {
+  font-size: 12px;
+  padding: 8px 28px;
+  color: #ffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 0 0 #f9e506;
+  outline: none;
+  border: none;
+  transition: ease-in-out 0.3%;
+  background-color: #ff0044;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+.articles-btn{
+  margin-bottom: 1rem;
+}
+
+small{
+  color: #ffffff;
+  text-align: center;
+}
+/* Form  */
+
+.form{
+  margin: 0 auto;
+  width:50%;
+}
+
+.submit-btn{
+  width:50%;
+}
+.name-email{
+  margin-right: 10px;
+}
+.form-control{
+  background-color: #F5F5F5;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 0;
+  width:100%;
+  border: 1px solid transparent;
+}
