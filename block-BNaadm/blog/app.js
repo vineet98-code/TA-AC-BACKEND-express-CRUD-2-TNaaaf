@@ -7,6 +7,8 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var articlesRouter = require('./routes/articles');
+var  commentsRouter = require('./routes/comments');
+
 
 // connect to database
 mongoose.connect(
@@ -32,6 +34,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/articles', articlesRouter);
+// Edit and delete functinality of comments
+app.use('/comments', commentsRouter);
+
 
 
 // catch 404 and forward to error handler
