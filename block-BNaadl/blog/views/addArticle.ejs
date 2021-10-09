@@ -1,0 +1,20 @@
+<%- include('partials/header') -%>
+
+    <div class = "form">
+        <form id ="addArticle" action="/articles" method="POST" >
+            <h2>Add Articles</h2>
+            
+            <input class="form-control name-email" name ="title" type="text" placeholder="Add Title">
+            <textarea class="form-control" name="description"  rows="5" placeholder="Add Description"></textarea>
+            <input class="form-control" name="tags" type="text" placeholder="Tags">
+            <input class="form-control" name="author" type="text" placeholder="Author">
+            <!-- Likes should not be captured from form and that will always be default to 0 and people can increment it, if they want to -->
+
+            <button class="btn" type="submit" >Add Articles</button>
+            
+        </form>
+    </div>
+    
+<%- include('partials/footer') -%>
+
+
