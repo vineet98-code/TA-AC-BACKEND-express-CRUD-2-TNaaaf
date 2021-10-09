@@ -1,0 +1,50 @@
+<%- include('partials/header') -%>
+
+
+   <h1><%= article.title %></h1>
+   <h3><%= article.author.name %></h3>
+
+   <% article.tags.forEach(t => { %>
+       <span><%= t %></span>
+   <% }) %>
+
+   <p><%= article.description %></p>
+
+   <h3><%= article.likes ? article.likes : 0 %></h3>
+   <!-- <h3><%= article.dislikes ? article.dislikes : 0 %></h3> -->
+
+   <a href="/articles/<%= article.id %>/likes"><button class="btn">Like</button></a>
+   <a href="/articles/<%= article.id %>/dislikes"><button class="btn">disLike</button></a>
+
+
+    <div class="flex justify-between">
+        <a href="/articles/<%= article.id %>/edit"><button class="btn">Edit</button> </a>
+        <a href="/articles/<%= article.id %>/delete"><button class="btn">delete</button> </a>
+    </div>
+
+    <div class="form">
+        <form action="/articles/<%= article.id %>/comments" method="POST" >
+            <textarea class="form-control" name="text" type="text" rows="3" placeholder="Add Comment..."></textarea>
+            <input class="form-control" name="author" type="text" placeholder="Author">
+            <button class="btn" type="submit" >Add Comment</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>Comments</h2>
+        <hr>
+        <% article.comments.forEach(comment => { %>
+        <div>
+            <p><%= comment.text %></p>
+            <p><%= comment.author %></p>
+            <a href="/comments/<%= comment.id %>/edit">
+                <button class="btn">Edit</button>
+            </a>
+            <a href="/comments/<%= comment.id %>/delete">    
+                <button class="btn">delete</button>
+            </a>
+            <% }) %>
+        </div>
+    </div>
+
+<%- include('partials/footer') -%>
