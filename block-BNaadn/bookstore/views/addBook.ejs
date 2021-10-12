@@ -1,0 +1,22 @@
+<%- include('partials/header') -%>
+
+    <div class = "form">
+        <form action="/books/" method="POST">
+          <fieldset>
+            <input class="form-control" name ="title" type="text" placeholder="Add Title" />
+            <input class="form-control" name ="summary" type="text" placeholder="Add summary" />
+
+            <input class="form-control" name="pages" type="number" placeholder="No. of pages">
+            <input class="form-control" name="publication" type="text" placeholder="Add Publication">
+            <input class="form-control" name="cover_image" type="text" placeholder="cover image">
+            <input class="form-control" name="category" type="text" placeholder="category">
+            <input class="form-control" name="name" type="text" placeholder="Author name">
+            <input class="form-control" name="email" type="text" placeholder="Author email">
+            <input class="form-control" name="country" type="text" placeholder="Author country">
+            
+            <button class="btn" type="submit" >Add Books</button>
+          </fieldset>
+        </form>
+    </div>
+    
+<%- include('partials/footer') -%>
