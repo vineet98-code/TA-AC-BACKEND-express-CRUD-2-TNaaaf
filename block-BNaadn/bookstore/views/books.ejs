@@ -1,0 +1,47 @@
+<%- include('partials/header') -%>
+
+    <div>
+        <h1>All Books</h1>
+        <section class="bookList">
+            <a href="/books/new">
+              <button type="button" class="btn btn-info">Add Book</button>
+            </a>
+            <a href="/authors/">
+              <button type="button" class="btn btn-primary">Authors List</button>
+            </a>
+        </section>
+        
+        <section class="categories">
+            <a href="/categories/motivation">
+              <button type="button" class="btn btn-primary">MOTIVATION</button>
+            </a>
+            <a href="/categories/fiction">
+              <button type="button" class="btn btn-success">Fiction</button>
+            </a>
+            <a href="/categories/technology">
+              <button type="button" class="btn btn-info">TECHNOLOGY</button>
+            </a>
+            <a href="/categories/adventure">
+              <button type="button" class="btn btn-warning">ADVENTURE</button>
+            </a>
+          </section>
+
+        <section>
+            <% books.forEach(book => { %> 
+                <div>
+                    <img src="<%= book.cover_img %>" alt="cover image"/>
+                    <p><%= book.title%></p>
+
+                    <a href="/books/<%= book.id %>">
+                        <button class="btn">View More</button>
+                    </a>
+
+                    <a href="/books/<%= book.id %>/delete">
+                        <button class="btn">Delete</button>
+                    </a>
+                </div>
+            <% }) %>
+        </section>
+    </div>
+
+<%- include('partials/footer') -%>

@@ -1,0 +1,23 @@
+<%- include('partials/header') -%>
+
+   <section>
+      
+       <% author.bookId.forEach(book => { %>
+        <div>
+            <img src="<%= book.cover_image" alt="Cover image"/>    
+            <p><%= book.title %></p>
+
+            <a href="/books/<%= book.id%>">
+                <button class="btn btn-success">View More</button>
+            </a>
+
+            <a href="/books/<%= book.id%>/delete">
+                <button class="btn btn-info">Delete</button>
+            </a>
+
+        </div>
+        <% }) %>
+        
+    </section>
+
+<%- include('partials/footer') -%>
